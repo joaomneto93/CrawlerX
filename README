@@ -1,11 +1,3 @@
-# data-extraction-scheduled
-
-# Informações
-
-Aplicação para extração de dados em horários programados, desenvolvido por Joãos
-
-# Setup
-
 ## No diretório raiz do projeto execute os comandos abaixo:
 
     > cd app
