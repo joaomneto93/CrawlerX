@@ -19,10 +19,14 @@ def get_driver():
 
 def main():
     driver = get_driver()
-    time.sleep(10)
-    element = driver.find_element(by=By.XPATH, value="/html/body/div[13]/div/div[2]/div/div[3]/div[6]/div[3]/div[2]/div[2]")
-    return element
-
+    time.sleep(3)
+    medicamentos = driver.find_element(by=By.XPATH, value = "/html/body/div[14]/div/header/div[2]/div/nav/ol/li[2]/a").text
+    time.sleep(2)
+    driver.find_element(by=By.XPATH, value="/html/body/div[14]/div/header/div[2]/div/nav/ol/li[2]/a").click()
+    vida_saudavel = driver.find_element(by=By.XPATH, value="/html/body/div[9]/div/header/div[2]/div/nav/ol/li[3]/a")
+    driver.find_element(by=By.XPATH, value="/html/body/div[9]/div/header/div[2]/div/nav/ol/li[3]/a").click()
+    time.sleep(3)
+    return medicamentos
 
 if __name__ == '__main__':
     print('Static text running')
