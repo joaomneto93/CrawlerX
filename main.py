@@ -23,10 +23,13 @@ def main():
     medicamentos = driver.find_element(by=By.XPATH, value = "/html/body/div[14]/div/header/div[2]/div/nav/ol/li[2]/a").text
     time.sleep(2)
     driver.find_element(by=By.XPATH, value="/html/body/div[14]/div/header/div[2]/div/nav/ol/li[2]/a").click()
+    medicamento_1 = driver.find_element(by=By.XPATH, value="/html/body/div[9]/div/div[2]/div/div[5]/div[2]/div[2]/ul/li[1]/div/div[2]/div[1]/a[2]").text
+    medicamento_2 = driver.find_element(by=By.XPATH, value="/html/body/div[9]/div/div[2]/div/div[5]/div[2]/div[2]/ul/li[1]/div/div[2]/div[3]/div/div/span/p[1]/span[2]").text
+    medicamento_3 = driver.find_element(by=By.XPATH, value="/html/body/div[9]/div/div[2]/div/div[5]/div[2]/div[2]/ul/li[1]/div/div[2]/div[3]/div/div/span/p[2]/span/span[2]").text
     vida_saudavel = driver.find_element(by=By.XPATH, value="/html/body/div[9]/div/header/div[2]/div/nav/ol/li[3]/a")
     driver.find_element(by=By.XPATH, value="/html/body/div[9]/div/header/div[2]/div/nav/ol/li[3]/a").click()
     time.sleep(3)
-    return medicamentos
+    return {'Nome': medicamento_1, 'Preço': medicamento_2, 'Preço com desconto': medicamento_3}
 
 if __name__ == '__main__':
     print('Static text running')
