@@ -1,14 +1,16 @@
 from selenium import webdriver
-# from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from bs4 import BeautifulSoup
 import time
+import requests
 
 
 def get_driver():
     options = webdriver.ChromeOptions()
     options.add_argument("disable-infobars")
-    options.add_argument("start-maximized")
     options.add_argument('disable-dev-shm-usage')
     options.add_argument("no-sandbox")
 
@@ -17,20 +19,34 @@ def get_driver():
     return driver
 
 
-def main():
+def raia():
+    nomes = []
     driver = get_driver()
-    time.sleep(3)
-    medicamentos = driver.find_element(by=By.XPATH, value = "/html/body/div[14]/div/header/div[2]/div/nav/ol/li[2]/a").text
-    time.sleep(2)
+    time.sleep(5)
+
     driver.find_element(by=By.XPATH, value="/html/body/div[14]/div/header/div[2]/div/nav/ol/li[2]/a").click()
-    medicamento_1 = driver.find_element(by=By.XPATH, value="/html/body/div[9]/div/div[2]/div/div[5]/div[2]/div[2]/ul/li[1]/div/div[2]/div[1]/a[2]").text
-    medicamento_2 = driver.find_element(by=By.XPATH, value="/html/body/div[9]/div/div[2]/div/div[5]/div[2]/div[2]/ul/li[1]/div/div[2]/div[3]/div/div/span/p[1]/span[2]").text
-    medicamento_3 = driver.find_element(by=By.XPATH, value="/html/body/div[9]/div/div[2]/div/div[5]/div[2]/div[2]/ul/li[1]/div/div[2]/div[3]/div/div/span/p[2]/span/span[2]").text
-    vida_saudavel = driver.find_element(by=By.XPATH, value="/html/body/div[9]/div/header/div[2]/div/nav/ol/li[3]/a")
+
+    titles = driver.find_elements(by=By.XPATH, value=("//*[@class='product-info']"))
+
+    for i, title in enumerate(titles):
+        print('Produto ' + str(i + 1) + ':\n')
+        print(title.text)
+        print('\n')
+        nomes.append(title.text.replace('\n', ';'))
+
+    print("Products found: " + str(len(titles)))
+
+    print(nomes)
+
     driver.find_element(by=By.XPATH, value="/html/body/div[9]/div/header/div[2]/div/nav/ol/li[3]/a").click()
-    time.sleep(3)
-    return {'Nome': medicamento_1, 'Preço': medicamento_2, 'Preço com desconto': medicamento_3}
+    driver.quit()
+    return nomes
+
 
 if __name__ == '__main__':
     print('Static text running')
-    print(main())
+    lista1 = raia()
+    with open('droga_raia.csv', 'w') as file:
+        for element in lista1:
+            file.write(str(element))
+            file.write('\n')
