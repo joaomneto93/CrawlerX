@@ -1,4 +1,6 @@
 selenium
-webdriver-manager
 requests
 bs4
+scrapy
+numpy
+pandas
