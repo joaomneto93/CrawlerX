@@ -51,12 +51,7 @@ def get_prices_ean(links):
     return prices, ean
 
 
-def raia():
-    driver = get_driver()
-    time.sleep(5)
-
-    driver.find_element(by=By.XPATH, value="/html/body/div[14]/div/header/div[2]/div/nav/ol/li[2]/a").click()
-
+def get_page(driver):
     titles = driver.find_elements(by=By.XPATH, value=(
         "//div[@class='product-info']/div[@class='product-name']/a[@class='show-hover']"))
 
@@ -64,12 +59,49 @@ def raia():
 
     nomes, links = get_titles(titles)
 
-    precos,ean = get_prices_ean(links)
+    precos, ean = get_prices_ean(links)
 
-    produtos = pd.DataFrame({'PRODUTO': nomes, 'LINK': links, 'CUSTO': precos, 'EAN': ean})
+    return nomes, links, precos, ean
+
+
+def scrape_all(driver):
+    driver.find_element(by=By.XPATH, value="/html/body/div[14]/div/header/div[2]/div/nav/ol/li[2]/a").click()
+
+    nomes = []
+    links = []
+    precos = []
+    ean = []
+
+    while True:
+        nomes_temp, links_temp, precos_temp, ean_temp = get_page(driver)
+
+        nomes.extend(nomes_temp)
+        links.extend(links_temp)
+        precos.extend(precos_temp)
+        ean.extend(ean_temp)
+
+        try:
+            driver.find_element(by=By.XPATH,
+                                value='//a[@title="Próximo"]').click()
+        except:
+            break
+
+    return nomes, links, precos, ean
+
+
+def raia():
+    driver = get_driver()
+
+    time.sleep(5)
+
+    nomes, links, precos, ean = scrape_all(driver)
+
+    produtos = pd.DataFrame({'PRODUTO': nomes, 'LINK': links, 'PRECO CONSUMIDOR': precos, 'EAN': ean})
 
     # driver.find_element(by=By.XPATH, value="/html/body/div[9]/div/header/div[2]/div/nav/ol/li[3]/a").click()
+
     driver.quit()
+
     return produtos
 
 
