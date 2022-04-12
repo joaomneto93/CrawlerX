@@ -1,25 +1,97 @@
-;PRODUTO;LINK;CUSTO;EAN
+;PRODUTO;LINK;PRECO CONSUMIDOR;EAN
 0;Glifage XR 500mg com 30 comprimidos;https://www.drogaraia.com.br/glifage-xr-500-mg-30-comprimidos.html;8,16;7891721013218
 1;Rosuvastatina Cálcica 20mg Novartis 30 comprimidos;https://www.drogaraia.com.br/rosuvastatina-calcica-20mg-novartis-genericos-30-comprimidos.html;39,46;7897595635808
-2;Rosuvastatina Cálcica 10mg Novartis com 30 Comprimidos;https://www.drogaraia.com.br/rosuvastatina-calcica-10mg-novartis-genericos-30-comprimidos.html;31,19;7897595635792
+2;Hemitartarato de Zolpidem 10mg Sandoz com 30 comprimidos;https://www.drogaraia.com.br/hemitartarato-de-zolpidem-10mg-sandoz-genericos-com-30-comprimidos-b1.html;21,83;7897595608161
 3;Forxiga 10mg com 30 comprimidos;https://www.drogaraia.com.br/forxiga-10-mg-30-comprimidos-revestidos.html;145,23;5000456028561
-4;Hemitartarato de Zolpidem 10mg Sandoz com 30 comprimidos;https://www.drogaraia.com.br/hemitartarato-de-zolpidem-10mg-sandoz-genericos-com-30-comprimidos-b1.html;19,69;7897595608161
+4;Rosuvastatina Cálcica 10mg Novartis com 30 Comprimidos;https://www.drogaraia.com.br/rosuvastatina-calcica-10mg-novartis-genericos-30-comprimidos.html;34,58;7897595635792
 5;Qlaira Bayer 28 comprimidos;https://www.drogaraia.com.br/qlaira-contraceptivo-oral-28-comprimidos-revestidos.html;50,34;7891106904582
-6;Sensor FreeStyle Libre com 1 unidade;https://www.drogaraia.com.br/freestyle-libre-sensor-kit-sensor-aplicador-lenco-de-alcool.html;;5021791715374
-7;Aspirina Prevent 100mg com 30 comprimidos;https://www.drogaraia.com.br/aspirina-100-mg-prevent-30-comprimidos.html;18,51;7891106001946
-8;Bissulfato de Clopidogrel 75mg Novartis com 28 comprimidos;https://www.drogaraia.com.br/bissulfato-de-clopidogrel-75mg-sandoz-genericos-28-comprimidos.html;27,19;7897595633675
-9;XigDuo XR 5/1000mg com 60 comprimidos;https://www.drogaraia.com.br/xigduo-xr-5-1000mg-60-comprimidos-de-liberacao-prolongada.html;172,97;5000456028370
-10;Dipirona Sódica 500mg EMS com 10 comprimidos;https://www.drogaraia.com.br/dipirona-sodica-ems-gen-500mg-1x10-comprimidos.html;4,03;59568
-11;Succinato de Metoprolol 50mg Neo Química com 30 Comprimidos;https://www.drogaraia.com.br/succinato-de-metoprolol-50mg-neo-quimica-genericos-com-30-comprimidos.html;20,59;7898947385730
-12;Fluconazol 150mg Cimed com 2 cápsulas;https://www.drogaraia.com.br/fluconazol-150mg-cimed-genericos-2-capsulas.html;7,38;7896523208770
-13;Dorflex com 50 comprimidos;https://www.drogaraia.com.br/dorflex-analgesico-com-50-comprimidos.html;20,99;7891058020941
-14;Apresolina 25mg Novartis com 20 drágeas;https://www.drogaraia.com.br/apresolina-25-mg-20-drageas.html;7,26;7896261000216
-15;Finasterida 1mg EMS com 60 comprimidos;https://www.drogaraia.com.br/finasterida-1mg-ems-generico-60-comprimidos-revestidos.html;32,99;7896004716343
-16;Novalgina 1g com 10 comprimidos;https://www.drogaraia.com.br/novalgina-1-grama-10-comprimidos.html;20,99;7891058001155
-17;Atenolol 25mg Medley com 30 comprimidos;https://www.drogaraia.com.br/atenolol-25-mg-medley-generico-30-comprimidos.html;4,24;7896422506342
-18;Soro Fisiológico Cloreto de Sódio 0,9% Needs 500ml;https://www.drogaraia.com.br/needs-soro-fisiologico-500-ml-1.html;;7896830001484
-19;Succinato de Metoprolol 25mg Neo Química com 30 Comprimidos;https://www.drogaraia.com.br/succinato-de-metoprolol-25mg-neo-quimica-genericos-com-30-comprimidos.html;9,89;7898947385693
-20;Indapamida 1,5mg Eurofarma com 30 comprimidos;https://www.drogaraia.com.br/indapamida-1-5-mg-eurofarma-genericos-30-comprimidos-revestidos.html;11,89;7891317127404
-21;Hidroclorotiazida 25mg Medley com 30 comprimidos;https://www.drogaraia.com.br/hidroclorotiazida-25mg-medley-generico-30-comprimidos.html;2,32;7891058002657
-22;Besilato de Anlodipino 5mg Cimed com 30 comprimidos;https://www.drogaraia.com.br/besilato-de-anlodipino-5mg-cimed-generico-com-30-comprimidos.html;7,95;7896523213569
-23;Pantoprazol Sódico Sesqui-Hidratado 40mg Cimed com 28 comprimidos;https://www.drogaraia.com.br/pantoprazol-sodico-sesqui-hidratado-40mg-cimed-generico-28-comprimidos-revestidos.html;23,09;7896523214382
+6;Dipirona Sódica 500mg EMS com 10 comprimidos;https://www.drogaraia.com.br/dipirona-sodica-ems-gen-500mg-1x10-comprimidos.html;4,03;59568
+7;Apresolina 25mg Novartis com 20 drágeas;https://www.drogaraia.com.br/apresolina-25-mg-20-drageas.html;7,26;7896261000216
+8;Sensor FreeStyle Libre com 1 unidade;https://www.drogaraia.com.br/freestyle-libre-sensor-kit-sensor-aplicador-lenco-de-alcool.html;;5021791715374
+9;Aspirina Prevent 100mg com 30 comprimidos;https://www.drogaraia.com.br/aspirina-100-mg-prevent-30-comprimidos.html;18,51;7891106001946
+10;Finasterida 1mg EMS com 60 comprimidos;https://www.drogaraia.com.br/finasterida-1mg-ems-generico-60-comprimidos-revestidos.html;36,58;7896004716343
+11;Fluconazol 150mg Cimed com 2 cápsulas;https://www.drogaraia.com.br/fluconazol-150mg-cimed-genericos-2-capsulas.html;7,38;7896523208770
+12;XigDuo XR 5/1000mg com 60 comprimidos;https://www.drogaraia.com.br/xigduo-xr-5-1000mg-60-comprimidos-de-liberacao-prolongada.html;172,97;5000456028370
+13;Bissulfato de Clopidogrel 75mg Novartis com 28 comprimidos;https://www.drogaraia.com.br/bissulfato-de-clopidogrel-75mg-sandoz-genericos-28-comprimidos.html;30,14;7897595633675
+14;Dorflex com 50 comprimidos;https://www.drogaraia.com.br/dorflex-analgesico-com-50-comprimidos.html;20,99;7891058020941
+15;Succinato de Metoprolol 50mg Neo Química com 30 Comprimidos;https://www.drogaraia.com.br/succinato-de-metoprolol-50mg-neo-quimica-genericos-com-30-comprimidos.html;22,83;7898947385730
+16;Atenolol 25mg Medley com 30 comprimidos;https://www.drogaraia.com.br/atenolol-25-mg-medley-generico-30-comprimidos.html;4,24;7896422506342
+17;Soro Fisiológico Cloreto de Sódio 0,9% Needs 500ml;https://www.drogaraia.com.br/needs-soro-fisiologico-500-ml-1.html;;7896830001484
+18;Epocler 100mg/ml + 50mg/ml + 10mg/ml Abacaxi com 10ml;https://www.drogaraia.com.br/epocler-ativador-hepatico-flaconete-avulso.html;;43381
+19;Indapamida 1,5mg Eurofarma com 30 comprimidos;https://www.drogaraia.com.br/indapamida-1-5-mg-eurofarma-genericos-30-comprimidos-revestidos.html;13,19;7891317127404
+20;Succinato de Metoprolol 25mg Neo Química com 30 Comprimidos;https://www.drogaraia.com.br/succinato-de-metoprolol-25mg-neo-quimica-genericos-com-30-comprimidos.html;10,96;7898947385693
+21;Novalgina 1g com 10 comprimidos;https://www.drogaraia.com.br/novalgina-1-grama-10-comprimidos.html;20,99;7891058001155
+22;Compressa de Gaze Estéril Needs com 10 unidades;https://www.drogaraia.com.br/needs-compressa-10-unidades.html;;7891800366365
+23;Hidroclorotiazida 25mg Medley com 30 comprimidos;https://www.drogaraia.com.br/hidroclorotiazida-25mg-medley-generico-30-comprimidos.html;2,32;7891058002657
+24;Aradois 50mg com 30 comprimidos;https://www.drogaraia.com.br/aradois-50-mg-30-comprimidos.html;10,42;7896112486787
+25;Besilato de Anlodipino 5mg Cimed com 30 comprimidos;https://www.drogaraia.com.br/besilato-de-anlodipino-5mg-cimed-generico-com-30-comprimidos.html;8,81;7896523213569
+26;Maleato de Enalapril 10mg Cimed com 30 comprimidos;https://www.drogaraia.com.br/maleato-de-enalapril-10mg-cimed-genericos-com-30-comprimidos.html;4,20;7896523210759
+27;Cloridrato de Nebivolol 5mg Torrent com 30 comprimidos;https://www.drogaraia.com.br/cloridrato-de-nebivolol-5-mg-torrent-genericos-30-comprimidos.html;23,79;8902220114906
+28;Pantoprazol Sódico Sesqui-Hidratado 40mg Cimed com 28 comprimidos;https://www.drogaraia.com.br/pantoprazol-sodico-sesqui-hidratado-40mg-cimed-generico-28-comprimidos-revestidos.html;25,60;7896523214382
+29;Losartana Potássica 50mg EMS com 30 comprimidos;https://www.drogaraia.com.br/losartana-potassica-50-mg-ems-generico-30-comprimidos.html;8,49;7896004706795
+30;Cloridrato de Naratriptana 2,5mg Nova Química com 10 comprimidos;https://www.drogaraia.com.br/cloridrato-de-naratriptana-2-5-nova-quimica-genericos-10-comprimidos-revestidos.html;20,18;7895296105040
+31;Atorvastatina Cálcica 40mg EMS com 30 comprimidos;https://www.drogaraia.com.br/atorvastatina-calcica-40mg-ems-genericos-30-comprimidos-revestidos.html;43,33;7896004729442
+32;Succinato de Desvenlafaxina 100mg Eurofarma com 30 comprimidos;https://www.drogaraia.com.br/succinato-desvenlafaxina-100mg-eurofarma-genericos-30-comprimidos-c1.html;52,33;7891317000530
+33;Ezetimiba 10mg Althaia com 60 comprimidos;https://www.drogaraia.com.br/ezetimiba-10mg-althaia-genericos-60-comprimidos.html;40,39;7898569762681
+34;Cloridrato de Metformina 850mg Prati Donaduzzi com 30 comprimidos;https://www.drogaraia.com.br/cloridrato-de-metformina-850-mg-farmaco-prati-generico-30-comprimidos.html;5,20;7898148291298
+35;Corus 50mg com 30 comprimidos;https://www.drogaraia.com.br/corus-50-mg-30-comprimidos-revestidos.html;8,09;7896181920410
+36;Losartana Potássica 50mg Prati Donaduzzi com 60 comprimidos;https://www.drogaraia.com.br/losartana-potassica-50mg-prati-generico-60-comprimidos-revestidos.html;8,53;7899547528626
+37;Puran T4 50mcg com 30 comprimidos;https://www.drogaraia.com.br/puran-t4-50-mcg-uso-oral-30-comprimidos.html;14,85;7897595901316
+38;Atorvastatina Cálcica 20mg EMS com 30 Comprimidos;https://www.drogaraia.com.br/atorvastatina-calcica-20mg-ems-genericos-30-comprimidos-revestidos.html;35,77;7896004729435
+39;Xigduo XR 10/1000mg com 30 comprimidos;https://www.drogaraia.com.br/xigduo-xr-10-1000mg-30-comprimidos-de-liberacao-prolongada.html;172,98;5000456028387
+40;Domperidona 10mg EMS com 60 comprimidos;https://www.drogaraia.com.br/domperidona-10mg-ems-generico-60-comprimidos.html;14,40;7896004723570
+41;Besilato de Anlodipino 5mg Aché com 30 comprimidos;https://www.drogaraia.com.br/besilato-de-anlodipino-5-mg-biosintetica-generico-30-comprimidos.html;7,75;7896181900658
+42;Hemifumarato de Quetiapina 25mg Teuto com 30 Comprimidos;https://www.drogaraia.com.br/fumarato-de-quetiapina-25mg-teuto-generico-30-comprimidos-revestidos-c1.html;21,94;7896112121282
+43;Nimesulida 100mg Eurofarma com 12 comprimidos;https://www.drogaraia.com.br/nimesulida-100-mg-eurofarma-generico-12-comprimidos.html;7,08;7891317422028
+44;Paracetamol 750mg EMS com 20 comprimidos;https://www.drogaraia.com.br/paracetamol-750-mg-ems-genericos-20-comprimidos.html;6,64;7896004703596
+45;Simeticona 125mg com 10 Cápsulas;https://www.drogaraia.com.br/simeticona-125mg-cimed-genericos-10-capsulas.html;8,90;7896523226675
+46;Colírio Hyabak 0,15% com 10ml;https://www.drogaraia.com.br/hyabak-solucao-oftalmica-10ml.html;55,39;3662042000058
+47;Pregabalina 75mg Medley com 30 cápsulas;https://www.drogaraia.com.br/pregabalina-75-mg-medley-30-capsulas-c1.html;44,34;7896422501187
+48;Baclofen 10mg com 20 comprimidos;https://www.drogaraia.com.br/baclofen-10-mg-20-comprimidos.html;6,15;7896112141693
+49;Tibolona 2,5mg EMS com 30 comprimidos;https://www.drogaraia.com.br/tibolona-2-5-mg-emg-generico-30-comprimidos.html;22,72;7896004742199
+50;Angeliq Estradiol 1mg + Drospirenona 2mg Bayer 28 comprimidos;https://www.drogaraia.com.br/angeliq-28-comprimidos-revestidos.html;88,70;7891106904155
+51;Promestrieno 10mg/g Eurofarma Creme Vaginal com 30g + 20 aplicadores;https://www.drogaraia.com.br/promestrieno-10mg-eurofarma-genericos-20-aplicadores.html;32,59;7891317490003
+52;Neosoro 0,5mg/ml Solução Nasal Gotas com 30ml;https://www.drogaraia.com.br/neosoro-descongestionante-adulto-solucao-30-ml.html;6,82;7896714231143
+53;Alopurinol 100mg Farmaco Prati com 30 comprimidos;https://www.drogaraia.com.br/alopurinol-100-mg-farmaco-prati-genericos-30-comprimidos.html;6,26;7899547503845
+54;Cloridrato de Venlafaxina 150mg Eurofarma com 30 cápsulas de liberação controlada;https://www.drogaraia.com.br/cloridrato-de-venlafaxina-150mg-eurofarma-genericos-30-comprimidos.html;63,19;7891317463076
+55;Levotiroxina Sódica 100mcg Merck com 30 comprimidos;https://www.drogaraia.com.br/levotiroxina-sodica-100mcg-merck-do-brasil-genericos-30-comprimidos.html;5,60;7891721019999
+56;Uniprazol 20mg 56 cápsulas;https://www.drogaraia.com.br/uniprazol-20mg-56-capsulas.html;10,96;7896006290285
+57;AAS Protect 100mg com 30 comprimidos;https://www.drogaraia.com.br/aas-protect-100mg-30-comprimidos-revestidos.html;17,61;7897595903693
+58;Dipirona Monoidratada 500mg Prati Donaduzzi com 10 comprimidos;https://www.drogaraia.com.br/dipirona-monoidratada-500mg-prati-genericos-10-comprimidos.html;4,38;66715
+59;Sinvastatina 20mg Novartis com 30 comprimidos;https://www.drogaraia.com.br/sinvastatina-20mg-novartis-genericos-30-comprimidos.html;12,07;7897595632548
+60;Oxalato de Escitalopram 20mg Aché Biosintética com 30 comprimidos;https://www.drogaraia.com.br/oxalato-de-escitalopram-20mg-biosintetica-genericos-30-comprimidos-revestidos-c1.html;30,59;7896181922001
+61;Sal de Fruta Eno Tradicional;https://www.drogaraia.com.br/eno-sal-de-frutas-envelope-regular-5-g.html;3,49;7896015511159
+62;Alopurinol 100mg Medley com 30 Comprimidos;https://www.drogaraia.com.br/alopurinol-100-mg-medley-genericos-30-comprimidos.html;6,76;7896422516921
+63;Avamys 27,5mcg Spray Nasal com 120 doses;https://www.drogaraia.com.br/avamys-27-5mcg-120-doses.html;56,32;7896015518875
+64;Dorflex com 10 comprimidos;https://www.drogaraia.com.br/dorflex-analgesico-cartela-avulsa-10-comprimidos.html;;7891058002916
+65;Cloridrato de Sertralina 100mg Eurofarma com 30 Comprimidos;https://www.drogaraia.com.br/cloridrato-de-sertralina-100mg-eurofarma-generico-30-comprimidos-revestidos-c1.html;47,67;7891317446963
+66;Cimegripe 4mg + 400mg + 4mg 20 cápsulas;https://www.drogaraia.com.br/cimegripe-20-capsulas.html;9,90;7896523200576
+67;Pantopaz 20mg com 28 comprimidos;https://www.drogaraia.com.br/pantopaz-20mg-28-comprimidos-revestidos.html;13,06;7897595603111
+68;Succinato Desvenlafaxina 50mg Eurofarma com 30 comprimidos;https://www.drogaraia.com.br/succinato-desvenlafaxina-50mg-eurofarma-genericos-30-comprimidos-c1.html;47,67;7891317000509
+69;Somalgin Cardio 100mg com 60 Comprimidos;https://www.drogaraia.com.br/somalgin-cardio-100mg-60-comprimidos.html;36,58;7894916512022
+70;Hemifumarato de Bisoprolol 5,0mg Merck com 30 comprimidos;https://www.drogaraia.com.br/hemifumarato-de-bisoprolol-5-0mg-merck-genericos-com-30-comprimidos.html;42,34;7891721026959
+71;Álcool Gel Higienizador para Mãos 70º Nouvelle Ficcus com 485ml;https://www.drogaraia.com.br/gel-higienizador-ficcus-2.html;;7898459973876
+72;Olmesartana Medoxomila 20mg Eurofarma com 30 comprimidos revestidos;https://www.drogaraia.com.br/olmesartana-medoxomila-20mg-eurofarma-genericos-30-comprimidos-revestidos.html;26,28;7891317121198
+73;Levotiroxina Sódica 50mcg Merck com 30 comprimidos;https://www.drogaraia.com.br/levotiroxina-sodica-50mcg-merck-do-brasil-genericos-30-comprimidos.html;6,60;7891721019845
+74;Sinvastacor 20mg;https://www.drogaraia.com.br/sinvastacor-20-mg-30-comprimidos.html;8,19;7897595601773
+75;Puran T4 75mcg com 30 comprimidos;https://www.drogaraia.com.br/puran-t4-75-mcg-uso-oral-30-comprimidos.html;16,40;7897595901323
+76;Levotiroxina Sódica 88mcg Merck com 30 comprimidos;https://www.drogaraia.com.br/levotiroxina-sodica-88-mg-merck-do-brasil-genericos-30-comprimidos.html;8,31;7891721019944
+77;Drospirenona 3mg + Etinilestradiol 0,03mg EMS com 21 comprimidos;https://www.drogaraia.com.br/drosp-etinilestradil-30-mcg-0-03mcg-ems-generioco-com-21-comprimidos-revestidos.html;18,27;7896004734392
+78;Leverctin 6mg com 4 comprimidos;https://www.drogaraia.com.br/leverctin-6mg-com-4-comprimidos.html;16,25;7894916503259
+79;Autoteste Antígeno Nasal Covid-19 Needs com 1 unidade;https://www.drogaraia.com.br/needs-auto-teste-rapido-antigeno-covid-1-unidade.html;;7891066008139
+80;Jardiance 25mg com 30 comprimidos;https://www.drogaraia.com.br/jardiance-25mg-30-comprimidos-revestidos.html;242,83;7896026306188
+81;Ciprofibrato 100mg Cimed com 30 comprimidos;https://www.drogaraia.com.br/ciprofibrato-100mg-cimed-genericos-com-30-comprimidos.html;21,60;7896523218946
+82;Autoteste Antígeno Covid-19 Novel Coronavirus com 1 unidade;https://www.drogaraia.com.br/novel-auto-teste-rapido-antigeno-covid-1-unidade.html;;618231886449
+83;Vitamina D Dprev 7.000UI com 8 comprimidos;https://www.drogaraia.com.br/dprev-7000-ui-8-comprimidos-revestidos.html;17,24;7896317910308
+84;Levotiroxina Sódica 75mcg Merck com 30 comprimidos;https://www.drogaraia.com.br/levotiroxina-sodica-75mcg-merck-do-brasil-genericos-30-comprimidos.html;7,15;7891721019890
+85;Probiótico Enterogermina Plus com 5 frascos de 5ml;https://www.drogaraia.com.br/enterogermin-plus-antidiarreico-5ml-com-5-flaconetes.html;29,99;7891058020286
+86;Evra 0,6/6mg Janssen 3 adesivos transdérmicos;https://www.drogaraia.com.br/evra-3-adesivo.html;90,37;7896212420018
+87;Maleato de Enalapril 10mg Medley com 30 comprimidos;https://www.drogaraia.com.br/maleato-enalapril-10-mg-medley-generico-30-comprimidos.html;6,64;7896422514248
+88;Succinato de Metoprolol 100mg Neo Química com 30 Comprimidos;https://www.drogaraia.com.br/succinato-de-metoprolol-100mg-neo-quimica-genericos-com-30-comprimidos.html;31,59;7898947385778
+89;Ciclo 21 0,15mg + 0,03mg com 21 comprimidos;https://www.drogaraia.com.br/ciclo-21-com-21-comprimidos.html;6,40;7896006234067
+90;Bezafibrato 200mg EMS com 20 comprimidos;https://www.drogaraia.com.br/bezafibrato-200mg-emg-generico-20-comprimidos.html;16,51;7896004710525
+91;Natifa Pro 1mg + 0,5mg com 28 comprimidos;https://www.drogaraia.com.br/natifa-pro-1-0-5-mg-28-comprimidos.html;61,64;7896094201477
+92;Neosaldina com 20 drágeas;https://www.drogaraia.com.br/neosaldina-20-drageas.html;22,10;7896255714617
+93;Esomeprazol Magnésico 20mg Astrazeneca com 28 comprimidos;https://www.drogaraia.com.br/esomeprazol-magnesico-tri-hidratado-generico-astrazeneca-20mg-28-comprimidos-revestidos.html;64,97;7896206425869
+94;Succinato de Sumatriptana 50mg Biolab com 2 comprimidos;https://www.drogaraia.com.br/succinato-de-sumatriptana-50mg-arrow-generico-2-comprimidos-revestidos.html;16,69;7898146821633
+95;Hemifumarato de Bisoprolol 2,5mg Merck com 30 comprimidos;https://www.drogaraia.com.br/hemifumarato-de-bisoprolol-2-5mg-merck-genericos-com-30-comprimidos.html;35,02;7891721026867
