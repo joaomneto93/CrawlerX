@@ -1,10 +1,3 @@
-# from selenium import webdriver
-# from selenium.webdriver.chrome.service import Service
-# from selenium.webdriver.common.by import By
-# import time
-# from scrapy import Selector
-# import requests
-# import pandas as pd
 from Tela.menu_flow import menu_flow
 from Farmacias.Raia import DrogaRaia
 from Farmacias.Qualidoc import Qualidoc

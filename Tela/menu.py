@@ -19,6 +19,7 @@ def menu_inicial():
     print('|' + '0 - SAIR'.ljust(30) + '|')
     print('-' * 32)
     option = input(': ')
+
     if option in escolhas.keys():
         print("Opção escolhida: " + escolhas[option])
         return option
