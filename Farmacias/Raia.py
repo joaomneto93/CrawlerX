@@ -13,7 +13,7 @@ class DrogaRaia():
     def __init__(self):
         self.url = "https://www.drogaraia.com.br/"
         self.marca_xpath = "//div[@class='product-attributes']//li[@class='marca show-hover']/text()"
-        self.price_xpath = "//span[@class='price']/span[2]/text()"
+        self.price_xpath = "//div[@class='price-info']//div[@class='price-box']/span/p[2]/span/span[2]/text()"
         self.ean_xpath = "//*[@id='product-attribute-specs-table']/tbody/tr[2]/td/text()"
         self.titles_xpath = "//div[@class='product-info']/div[@class='product-name']/a[@class='show-hover']"
         self.next_xpath = '//a[@title="Próximo"]'
@@ -30,15 +30,36 @@ class DrogaRaia():
         return driver
 
     def generate_data(self):
-        driver = self.get_driver()
-        time.sleep(5)
-        driver.find_element(by=By.XPATH, value="/html/body/div[14]/div/header/div[2]/div/nav/ol/li[2]/a").click()
-        nomes, links, marcas, precos, ean = scrape_all(driver=driver, title_xpath=self.titles_xpath,
-                                                       marca_xpath=self.marca_xpath, price_xpath=self.price_xpath,
-                                                       ean_xpath=self.ean_xpath,next_xpath=self.next_xpath)
+        lista_abas = ["/html/body/div[14]/div/header/div[2]/div/nav/ol/li[2]/a",
+                      "//a[@href='https://www.drogaraia.com.br/bem-estar.html']",
+                      "//a[@href='https://www.drogaraia.com.br/mamae-e-bebe.html']",
+                      "//a[@href='https://www.drogaraia.com.br/beleza.html']",
+                      "//a[@href='https://www.drogaraia.com.br/cabelo.html']",
+                      "//a[@href='https://www.drogaraia.com.br/higiene-pessoal.html']"]
+
+        nomes = []
+        links = []
+        marcas = []
+        precos = []
+        ean = []
+
+        for aba in lista_abas:
+            driver = self.get_driver()
+            time.sleep(5)
+            driver.find_element(by=By.XPATH, value=aba).click()
+            nomes_temp, links_temp, marcas_temp, precos_temp, ean_temp = \
+                scrape_all(driver=driver, title_xpath=self.titles_xpath,
+                           marca_xpath=self.marca_xpath, price_xpath=self.price_xpath,
+                           ean_xpath=self.ean_xpath, next_xpath=self.next_xpath)
+            driver.quit()
+
+            nomes.extend(nomes_temp)
+            links.extend(links_temp)
+            marcas.extend(marcas_temp)
+            precos.extend(precos_temp)
+            ean.extend(ean_temp)
 
         lista_produtos = pd.DataFrame(
             {'PRODUTO': nomes, 'LINK': links, 'MARCA': marcas, 'PRECO CONSUMIDOR': precos, 'EAN': ean})
-        # driver.find_element(by=By.XPATH, value="/html/body/div[9]/div/header/div[2]/div/nav/ol/li[3]/a").click()
         lista_produtos.to_csv('Arquivos/droga_raia.csv', sep=';')
-        driver.quit()
+
