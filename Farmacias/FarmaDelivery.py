@@ -1,7 +1,15 @@
 class FarmaDelivery:
 
     def __init__(self):
-        self.url = "https://www.farmadelivery.com.br/"
-
-    def generate_data(self):
-        print("Não implementado até o momento")
+        self.lista_abas = ["https://www.farmadelivery.com.br/"]
+        # self.brand_xpath = "//div[@class='product-attributes']//li[@class='marca show-hover']/text()"
+        # self.old_price_xpath = "//div[@class='price-info']//div[@class='price-box']/span//p[@class='old-price']/span[2]/text()[2]"
+        # self.wholesale_price_xpath = "//div[@class='product_label raia-arrasa']//span[@class='price']/text()"
+        # self.price_xpath = "//div[@class='price-info']//div[@class='price-box']//p[@class='special-price']/" \
+        #                    "span/span[2]/text()"
+        # self.price_xpath2 = "//div[@class='price-info']//div[@class='price-box']//span[@class='regular-price ']/" \
+        #                     "span[2]/text()"
+        # self.ean_xpath = "//*[@id='product-attribute-specs-table']/tbody/tr[2]/td/text()"
+        # self.titles_xpath = "//div[@class='product-info']/div[@class='product-name']/a[@class='show-hover']"
+        # self.next_xpath = '//a[@title="Próximo"]'
+        # self.filename = 'farma_delivery.csv'
