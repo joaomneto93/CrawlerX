@@ -1,5 +1,7 @@
 import time
 from Tela import menu
+from Funcoes.funcoes import generate_data
+import os
 
 
 def menu_flow(class_list: dict):
@@ -12,13 +14,26 @@ def menu_flow(class_list: dict):
 
         elif opcao is None:
             print("Opção não existente, tente novamente")
-            time.sleep(2)
+            time.sleep(0.75)
+            print('.')
+            time.sleep(0.75)
+            print('.')
+            time.sleep(0.75)
+            print('.')
+            time.sleep(0.75)
+            os.system('cls')
 
         else:
             farmacia = class_list[opcao]
-            farmacia.generate_data()
-            time.sleep(2)
-
-
-# if __name__ == '__main__':
-#     menu_flow({'DROGA RAIA': })
+            try:
+                generate_data(farmacia)
+            except AttributeError:
+                print("Opção não implementada até o momento!")
+            time.sleep(0.75)
+            print('.')
+            time.sleep(0.75)
+            print('.')
+            time.sleep(0.75)
+            print('.')
+            time.sleep(0.75)
+            os.system('cls')

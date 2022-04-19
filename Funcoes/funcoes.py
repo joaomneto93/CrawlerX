@@ -1,6 +1,63 @@
 import requests
 from scrapy import Selector
+from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+import pandas as pd
+import time
+
+
+def get_driver(url):
+    options = webdriver.ChromeOptions()
+    #options.add_argument("--headless")
+    options.add_argument("disable-infobars")
+    options.add_argument('disable-dev-shm-usage')
+    options.add_argument("no-sandbox")
+
+    driver = webdriver.Chrome(service=Service("chromedriver_win32/chromedriver.exe"), options=options)
+    driver.get(url)
+
+    return driver
+
+
+def generate_data(class_farmacia):
+    farmacia = class_farmacia()
+
+    lista_produtos = pd.DataFrame(
+        {'PRODUTO': [], 'LINK': [], 'MARCA': [], 'PRECO CONSUMIDOR': [], 'PRECO ORIGINAL': [],
+         'PRECO ATACADO': [], 'EAN': []})
+    lista_produtos.to_csv(farmacia.filename, sep=';', mode='w', index=False)
+
+    counter = 1
+    for aba in farmacia.lista_abas:
+        driver = get_driver(aba)
+        time.sleep(2)
+
+        nomes_temp, links_temp, marcas_temp, precos_antigos_temp, precos_promo_temp, precos_temp, ean_temp = \
+            scrape_all(driver=driver, title_xpath=farmacia.titles_xpath,
+                       marca_xpath=farmacia.marca_xpath, old_price_xpath=farmacia.old_price_xpath,
+                       promo_price_xpath=farmacia.promo_price_xpath, price_xpath=farmacia.price_xpath,
+                       price_xpath2=farmacia.price_xpath2, ean_xpath=farmacia.ean_xpath,
+                       next_xpath=farmacia.next_xpath)
+
+        driver.quit()
+
+        pd.DataFrame(
+            {'PRODUTO': nomes_temp, 'LINK': links_temp, 'MARCA': marcas_temp, 'PRECO CONSUMIDOR': precos_temp,
+             'PRECO ORIGINAL': precos_antigos_temp, 'PRECO ATACADO': precos_promo_temp, 'EAN': ean_temp}). \
+            to_csv(farmacia.filename, sep=';', mode='a', header=False, index=False)
+
+        print("\n" + "-" * 30)
+        print(("Aba " + str(counter) + " concluída!").center(30))
+        print("-" * 30 + "\n")
+        counter += 1
+
+    print("\n"+"-"*30)
+    print("-"*30)
+    print("Extração concluída!".center(30))
+    print("-"*30)
+    print("-"*30+"\n")
+    return None
 
 
 def scrape_all(driver, title_xpath: str, marca_xpath: str, old_price_xpath: str, promo_price_xpath: str,
