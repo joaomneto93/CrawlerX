@@ -1,18 +1,19 @@
 import time
 from Tela import menu
+from Farmacias.Classes import Farmacia
 from Funcoes.funcoes import generate_data
 import os
 
 
-def menu_flow(class_list: dict):
+def menu_flow(company_list: list):
     while True:
-        opcao = menu.menu_inicial()
+        option = menu.menu_inicial()
 
-        if opcao == '0':
+        if option == '0':
             time.sleep(2)
             break
 
-        elif opcao is None:
+        elif option is None:
             print("Opção não existente, tente novamente")
             time.sleep(0.75)
             print('.')
@@ -24,7 +25,13 @@ def menu_flow(class_list: dict):
             os.system('cls')
 
         else:
-            farmacia = class_list[opcao]
+            company_dict: dict = company_list[option]
+            farmacia = Farmacia(tab_list=company_dict['tabs'], brand=company_dict['brand'],
+                                old_price=company_dict['old'], wholesale=company_dict['wholesale'],
+                                price1=company_dict['price'], price2=company_dict['price2'], ean=company_dict['ean'],
+                                titles=company_dict['titles'], next_=company_dict['next'],
+                                filename=company_dict['filename'])
+
             try:
                 generate_data(farmacia)
             except AttributeError:

@@ -19,7 +19,7 @@ def menu_inicial():
 
     if option in escolhas.keys():
         print("Opção escolhida: " + escolhas[option])
-        return option
+        return int(option) - 1
     else:
         return None
 

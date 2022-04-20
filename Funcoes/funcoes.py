@@ -3,6 +3,7 @@ from scrapy import Selector
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
+from Farmacias.Classes import Farmacia
 import pandas as pd
 import time
 
@@ -25,57 +26,64 @@ def get_driver(url: str):
     return driver
 
 
-def generate_data(class_farmacia) -> None:
+def write_header(filename: str) -> None:
+    pd.DataFrame(
+        {'PRODUTO': [], 'LINK': [], 'MARCA': [], 'PRECO CONSUMIDOR': [], 'PRECO ORIGINAL': [],
+         'PRECO ATACADO': [], 'EAN': []}).to_csv(filename, sep=';', mode='w', index=False)
+    return None
+
+
+def write_csv(names_temp: list, links_temp: list, brands_temp: list, precos_temp: list, old_prices_temp: list,
+              wholesale_prices_temp: list, ean_temp: list, filename: str) -> None:
+    pd.DataFrame(
+        {'PRODUTO': names_temp, 'LINK': links_temp, 'MARCA': brands_temp, 'PRECO CONSUMIDOR': precos_temp,
+         'PRECO ORIGINAL': old_prices_temp, 'PRECO ATACADO': wholesale_prices_temp, 'EAN': ean_temp}). \
+        to_csv(filename, sep=';', mode='a', header=False, index=False)
+    return None
+
+
+def generate_data(company: Farmacia) -> None:
     """
     write the scrapped data to a file\n
-    :param class_farmacia: class of the desired company
+    :param company: object from class Farmacia
     :return: None
     """
-    farmacia = class_farmacia()
 
-    lista_produtos = pd.DataFrame(
-        {'PRODUTO': [], 'LINK': [], 'MARCA': [], 'PRECO CONSUMIDOR': [], 'PRECO ORIGINAL': [],
-         'PRECO ATACADO': [], 'EAN': []})
-    lista_produtos.to_csv(farmacia.filename, sep=';', mode='w', index=False)
+    write_header(company.filename)
 
     counter = 1
-    for aba in farmacia.lista_abas:
+    for aba in company.tab_list:
         driver = get_driver(aba)
         time.sleep(2)
 
-        names_temp, links_temp, brands_temp, old_prices_temp, wholesale_prices_temp, precos_temp, ean_temp = \
-            scrape_all(driver=driver, title_xpath=farmacia.titles_xpath,
-                       brand_xpath=farmacia.brand_xpath, old_price_xpath=farmacia.old_price_xpath,
-                       wholesale_price_xpath=farmacia.wholesale_price_xpath, price_xpath=farmacia.price_xpath,
-                       price_xpath2=farmacia.price_xpath2, ean_xpath=farmacia.ean_xpath,
-                       next_xpath=farmacia.next_xpath)
-
-        driver.quit()
-
-        pd.DataFrame(
-            {'PRODUTO': names_temp, 'LINK': links_temp, 'MARCA': brands_temp, 'PRECO CONSUMIDOR': precos_temp,
-             'PRECO ORIGINAL': old_prices_temp, 'PRECO ATACADO': wholesale_prices_temp, 'EAN': ean_temp}). \
-            to_csv(farmacia.filename, sep=';', mode='a', header=False, index=False)
+        scrape_all(driver=driver, title_xpath=company.titles_xpath,
+                   brand_xpath=company.brand_xpath, old_price_xpath=company.old_price_xpath,
+                   wholesale_price_xpath=company.wholesale_price_xpath, price_xpath=company.price_xpath,
+                   price_xpath2=company.price_xpath2, ean_xpath=company.ean_xpath,
+                   next_xpath=company.next_xpath, filename=company.filename)
 
         print("\n" + "-" * 30)
         print(("Aba " + str(counter) + " concluída!").center(30))
         print("-" * 30 + "\n")
         counter += 1
-        print("Produtos encontrados: " + str(len(names_temp)))
+
+        driver.quit()
 
     print("\n" + "-" * 30)
     print("-" * 30)
     print("Extração concluída!".center(30))
     print("-" * 30)
     print("-" * 30 + "\n")
+
     return None
 
 
 def scrape_all(driver, title_xpath: str, brand_xpath: str, old_price_xpath: str, wholesale_price_xpath: str,
                price_xpath: str, price_xpath2: str, ean_xpath: str,
-               next_xpath: str) -> tuple[list, list, list, list, list, list, list]:
+               next_xpath: str, filename: str) -> None:
     """
     This function scrapes a desired website\n
+    :param filename: name of file to write to
     :param driver: driver which opens the browser
     :param title_xpath: XPATH to all the products in a page
     :param brand_xpath: XPATH to the name of the brand of a product
@@ -85,16 +93,10 @@ def scrape_all(driver, title_xpath: str, brand_xpath: str, old_price_xpath: str,
     :param price_xpath2: alternate XPATH in case the first returns None
     :param ean_xpath: XPATH to EAN of a product
     :param next_xpath: XPATH to click on next page
-    :return: names, links, brands, old_prices, wholesale_prices, precos, ean
+    :return: None
     """
 
-    names = []
-    links = []
-    brands = []
-    old_prices = []
-    wholesale_prices = []
-    precos = []
-    ean = []
+    total = 0
 
     while True:
         names_temp, links_temp, brands_temp, old_prices_temp, wholesale_prices_temp, precos_temp, ean_temp = \
@@ -104,20 +106,24 @@ def scrape_all(driver, title_xpath: str, brand_xpath: str, old_price_xpath: str,
                      price_xpath2=price_xpath2,
                      ean_xpath=ean_xpath)
 
-        names.extend(names_temp)
-        links.extend(links_temp)
-        brands.extend(brands_temp)
-        old_prices.extend(old_prices_temp)
-        wholesale_prices.extend(wholesale_prices_temp)
-        precos.extend(precos_temp)
-        ean.extend(ean_temp)
+        write_csv(names_temp=names_temp, links_temp=links_temp, brands_temp=brands_temp,
+                  old_prices_temp=old_prices_temp, wholesale_prices_temp=wholesale_prices_temp,
+                  precos_temp=precos_temp, ean_temp=ean_temp,
+                  filename=filename)
+
+        print("\n" + "-" * 64)
+        print(("Produtos encontrados: " + str(len(names_temp))).center(64))
+        total += len(names_temp)
+        print("-" * 64)
+        print(("Total parcial de produtos: " + str(total)).center(64))
+        print("-" * 64 + "\n")
 
         try:
             driver.find_element(by=By.XPATH, value=next_xpath).click()
         except:
             break
 
-    return names, links, brands, old_prices, wholesale_prices, precos, ean
+    return None
 
 
 def get_page(driver, title_xpath: str, brand_xpath: str, old_price_xpath: str, wholesale_price_xpath: str,
@@ -171,18 +177,18 @@ def get_attributes(links: list, brand_xpath: str, old_price_xpath: str, wholesal
         html = requests.get(url=link).content
         sel = Selector(text=html)
 
-        brand = sel.xpath(brand_xpath).extract_first()
+        brand = str(sel.xpath(brand_xpath).extract_first()).strip()
 
-        old_price = sel.xpath(old_price_xpath).extract_first()
+        old_price = str(sel.xpath(old_price_xpath).extract_first()).strip()
 
-        wholesale_price = sel.xpath(wholesale_price_xpath).extract_first()
+        wholesale_price = str(sel.xpath(wholesale_price_xpath).extract_first()).strip()
 
         if sel.xpath(price_xpath).extract_first() is None:
-            price = sel.xpath(price_xpath2).extract_first()
+            price = str(sel.xpath(price_xpath2).extract_first()).strip()
         else:
-            price = sel.xpath(price_xpath).extract_first()
+            price = str(sel.xpath(price_xpath).extract_first()).strip()
 
-        n_ean = sel.xpath(ean_xpath).extract_first()
+        n_ean = str(sel.xpath(ean_xpath).extract_first()).strip()
 
         brands.append(brand)
         old_prices.append(old_price)
