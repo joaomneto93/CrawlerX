@@ -9,7 +9,7 @@ def menu_flow(company_list: list):
     while True:
         option = menu.menu_inicial()
 
-        if option == '0':
+        if option == -1:
             time.sleep(2)
             break
 
@@ -30,7 +30,7 @@ def menu_flow(company_list: list):
                                 old_price=company_dict['old'], wholesale=company_dict['wholesale'],
                                 price1=company_dict['price'], price2=company_dict['price2'], ean=company_dict['ean'],
                                 titles=company_dict['titles'], next_=company_dict['next'],
-                                filename=company_dict['filename'])
+                                filename=company_dict['filename'], urls=company_dict['urls'])
 
             try:
                 generate_data(farmacia)
