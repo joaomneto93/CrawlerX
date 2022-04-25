@@ -4,9 +4,12 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from Farmacias.Classes import Farmacia
 import pandas as pd
 import time
+from datetime import date
 
 
 def get_driver(url: str):
@@ -50,7 +53,8 @@ def generate_data(company: Farmacia) -> None:
     :return: None
     """
 
-    write_header(company.filename)
+    time_string = date.today()
+    write_header(company.filename.format(time_string))
 
     counter = 1
     for aba in company.tab_list:
@@ -61,7 +65,8 @@ def generate_data(company: Farmacia) -> None:
                    brand_xpath=company.brand_xpath, old_price_xpath=company.old_price_xpath,
                    wholesale_price_xpath=company.wholesale_price_xpath, price_xpath=company.price_xpath,
                    price_xpath2=company.price_xpath2, ean_xpath=company.ean_xpath,
-                   next_xpath=company.next_xpath, filename=company.filename, url_xpath=company.url_xpath)
+                   next_xpath=company.next_xpath, filename=company.filename.format(time_string),
+                   url_xpath=company.url_xpath)
 
         print("\n" + "-" * 30)
         print(("Aba " + str(counter) + " concluída!").center(30))
@@ -103,6 +108,7 @@ def scrape_all(driver, title_xpath: str, url_xpath: str, brand_xpath: str, old_p
     next_page = 2
 
     while True:
+        print('Página ' + str(next_page - 1))
         names_temp, links_temp, brands_temp, old_prices_temp, wholesale_prices_temp, prices_temp, ean_temp = \
             get_page(driver, title_xpath=title_xpath, link_xpath=url_xpath, brand_xpath=brand_xpath,
                      old_price_xpath=old_price_xpath,
@@ -152,8 +158,15 @@ def get_page(driver, title_xpath: str, link_xpath: str, brand_xpath: str, old_pr
     :return: names, links, brands, old_prices, wholesale_prices, prices, ean
     """
 
-    title_html = driver.find_elements(by=By.XPATH, value=title_xpath)
-    urls_html = driver.find_elements(by=By.XPATH, value=link_xpath)
+    try:
+        title_html = WebDriverWait(driver, 10).until(
+        EC.presence_of_all_elements_located((By.XPATH, title_xpath)))
+    # title_html = driver.find_elements(by=By.XPATH, value=title_xpath)
+        urls_html = WebDriverWait(driver, 10).until(
+        EC.presence_of_all_elements_located((By.XPATH, link_xpath)))
+    # urls_html = driver.find_elements(by=By.XPATH, value=link_xpath)
+    except TimeoutError:
+        print("Elementos não localizados")
 
     names, links = get_titles(title_html, urls_html)
     brands, old_prices, wholesale_prices, prices, ean = get_attributes(links, brand_xpath=brand_xpath,

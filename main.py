@@ -1,4 +1,9 @@
 from Tela.menu_flow import menu_flow
+import os
+try:
+    os.mkdir('Arquivos')
+except OSError:
+    print('Diretório --Arquivos-- já existente')
 
 raia = {'tabs': ["https://www.drogaraia.com.br/medicamentos.html?limit=48",
                  "https://www.drogaraia.com.br/bem-estar.html?limit=48",
@@ -18,7 +23,7 @@ raia = {'tabs': ["https://www.drogaraia.com.br/medicamentos.html?limit=48",
                   "span[2]/text()",
         'ean': "//*[@id='product-attribute-specs-table']/tbody/tr[2]/td/text()",
         'next': '//div[@class="pages inline"]/ol//a[text()="{}"]',
-        'filename': 'droga_raia.csv'}
+        'filename': 'Arquivos/droga_raia {}.csv'}
 
 qualidoc = {'tabs': ["https://www.drogaraia.com.br/medicamentos.html?limit=48",
                      "https://www.drogaraia.com.br/bem-estar.html?limit=48",
@@ -38,7 +43,7 @@ qualidoc = {'tabs': ["https://www.drogaraia.com.br/medicamentos.html?limit=48",
                       "span[2]/text()",
             'ean': "//*[@id='product-attribute-specs-table']/tbody/tr[2]/td/text()",
             'next': '//a[@title="Próximo"]',
-            'filename': 'qualidoc.csv'}
+            'filename': 'Arquivos/qualidoc {}.csv'}
 
 farma_delivery = {'tabs': ["https://www.drogaraia.com.br/medicamentos.html?limit=48",
                            "https://www.drogaraia.com.br/bem-estar.html?limit=48",
@@ -58,7 +63,7 @@ farma_delivery = {'tabs': ["https://www.drogaraia.com.br/medicamentos.html?limit
                             "span[2]/text()",
                   'ean': "//*[@id='product-attribute-specs-table']/tbody/tr[2]/td/text()",
                   'next': '//a[@title="Próximo"]',
-                  'filename': 'farma_delivery.csv'}
+                  'filename': 'Arquivos/farma_delivery {}.csv'}
 
 ultra_farma = {'tabs': ["https://www.ultrafarma.com.br/categoria/medicamentos?resultsperpage=90&sortby=relevance",
                         "https://www.ultrafarma.com.br/categoria/genericos?resultsperpage=90&sortby=relevance",
@@ -76,7 +81,7 @@ ultra_farma = {'tabs': ["https://www.ultrafarma.com.br/categoria/medicamentos?re
                'price2': "//*[@id='container']/section[1]/div[1]/div/div[2]/div/div[2]/div[2]/p[2]/span[2]/text()",
                'ean': "//*[@id='pdp-section-outras-informacoes']/div/ul/li[2]/span/@data-attr-value",
                'next': '//ul[@class="pagination pagination-vitrine"]/li/a[text()="{}"]',
-               'filename': 'ultrafarma.csv'}
+               'filename': 'Arquivos/ultrafarma {}.csv'}
 
 company_list = [raia, qualidoc, farma_delivery, ultra_farma]
 
