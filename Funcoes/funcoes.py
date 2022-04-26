@@ -160,10 +160,10 @@ def get_page(driver, title_xpath: str, link_xpath: str, brand_xpath: str, old_pr
 
     try:
         title_html = WebDriverWait(driver, 10).until(
-        EC.presence_of_all_elements_located((By.XPATH, title_xpath)))
-    # title_html = driver.find_elements(by=By.XPATH, value=title_xpath)
+            EC.presence_of_all_elements_located((By.XPATH, title_xpath)))
+        # title_html = driver.find_elements(by=By.XPATH, value=title_xpath)
         urls_html = WebDriverWait(driver, 10).until(
-        EC.presence_of_all_elements_located((By.XPATH, link_xpath)))
+            EC.presence_of_all_elements_located((By.XPATH, link_xpath)))
     # urls_html = driver.find_elements(by=By.XPATH, value=link_xpath)
     except TimeoutError:
         print("Elementos não localizados")
@@ -197,10 +197,19 @@ def get_attributes(links: list, brand_xpath: str, old_price_xpath: str, wholesal
     wholesale_prices = []
     ean = []
     brands = []
+    i = 1
+
+    headers = {
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36"}
 
     for link in links:
-        html = requests.get(url=link).content
+        req = requests.Session()
+        html = req.get(url=link, headers=headers).content
         sel = Selector(text=html)
+
+        with open('xpath{}.txt'.format(i), 'w') as file:
+            file.write(str(html))
+        i += 1
 
         brand = str(sel.xpath(brand_xpath).extract_first()).strip()
 
@@ -238,6 +247,7 @@ def get_titles(titles: list, links: list) -> tuple[list, list]:
     for title, link in zip(titles, links):
         print('\nProduto ' + str(i) + ':')
         print(title.text)
+        print(link.get_attribute('href'))
         names.append(title.text)
         urls.append(link.get_attribute('href'))
         i += 1
