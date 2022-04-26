@@ -33,7 +33,7 @@ def menu_flow(company_list: list):
                                 filename=company_dict['filename'], urls=company_dict['urls'])
 
             try:
-                generate_data(farmacia)
+                generate_data(farmacia, option)
             except AttributeError:
                 print("Opção não implementada até o momento!")
             time.sleep(0.75)

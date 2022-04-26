@@ -1,4 +1,4 @@
-import requests
+import undetected_chromedriver as uc
 from scrapy import Selector
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -10,6 +10,7 @@ from Farmacias.Classes import Farmacia
 import pandas as pd
 import time
 from datetime import date
+import requests
 
 
 def get_driver(url: str):
@@ -20,14 +21,48 @@ def get_driver(url: str):
     """
     options = webdriver.ChromeOptions()
     # options.add_argument("--headless")
-    options.add_argument("disable-infobars")
-    options.add_argument('disable-dev-shm-usage')
-    options.add_argument("no-sandbox")
+    options.add_argument("--disable-infobars")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--no-sandbox")
 
     driver = webdriver.Chrome(service=Service("chromedriver_win32/chromedriver.exe"), options=options)
     driver.get(url)
 
     return driver
+
+
+def get_driver_page(url: str):
+    """
+    get the driver for a desired url\n
+    :param url: url of the website
+    :return: driver
+    """
+    options = webdriver.ChromeOptions()
+    options.add_argument("--headless")
+    options.add_argument("--disable-infobars")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--no-sandbox")
+
+    # driver = webdriver.Chrome(service=Service("chromedriver_win32/chromedriver.exe"), options=options)
+    driver = uc.Chrome(service=Service("chromedriver_win32/chromedriver.exe"), options=options)
+    driver.get(url)
+
+    return driver
+
+
+def get_html(url, option):
+    # headers = {
+    #     "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+    #                   "(KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36"}
+
+    html = requests.get(url=url).content
+    if option in [0, 3]:
+        return html
+    elif option in [1, 2]:
+        driver = get_driver_page(url)
+        html = driver.page_source
+        driver.quit()
+        return html
 
 
 def write_header(filename: str) -> None:
@@ -46,7 +81,7 @@ def write_csv(names_temp: list, links_temp: list, brands_temp: list, prices_temp
     return None
 
 
-def generate_data(company: Farmacia) -> None:
+def generate_data(company: Farmacia, option: int) -> None:
     """
     write the scrapped data to a file\n
     :param company: object from class Farmacia
@@ -66,7 +101,7 @@ def generate_data(company: Farmacia) -> None:
                    wholesale_price_xpath=company.wholesale_price_xpath, price_xpath=company.price_xpath,
                    price_xpath2=company.price_xpath2, ean_xpath=company.ean_xpath,
                    next_xpath=company.next_xpath, filename=company.filename.format(time_string),
-                   url_xpath=company.url_xpath)
+                   url_xpath=company.url_xpath, option=option)
 
         print("\n" + "-" * 30)
         print(("Aba " + str(counter) + " concluída!").center(30))
@@ -87,7 +122,7 @@ def generate_data(company: Farmacia) -> None:
 def scrape_all(driver, title_xpath: str, url_xpath: str, brand_xpath: str, old_price_xpath: str,
                wholesale_price_xpath: str,
                price_xpath: str, price_xpath2: str, ean_xpath: str,
-               next_xpath: str, filename: str) -> None:
+               next_xpath: str, filename: str, option: int) -> None:
     """
     This function scrapes a desired website\n
     :param url_xpath: xpath to find urls of products listed in the page
@@ -115,7 +150,7 @@ def scrape_all(driver, title_xpath: str, url_xpath: str, brand_xpath: str, old_p
                      wholesale_price_xpath=wholesale_price_xpath,
                      price_xpath=price_xpath,
                      price_xpath2=price_xpath2,
-                     ean_xpath=ean_xpath)
+                     ean_xpath=ean_xpath, option=option)
 
         write_csv(names_temp=names_temp, links_temp=links_temp, brands_temp=brands_temp,
                   old_prices_temp=old_prices_temp, wholesale_prices_temp=wholesale_prices_temp,
@@ -143,7 +178,7 @@ def scrape_all(driver, title_xpath: str, url_xpath: str, brand_xpath: str, old_p
 
 def get_page(driver, title_xpath: str, link_xpath: str, brand_xpath: str, old_price_xpath: str,
              wholesale_price_xpath: str,
-             price_xpath: str, price_xpath2: str, ean_xpath: str) -> tuple[list, list, list, list, list, list, list]:
+             price_xpath: str, price_xpath2: str, ean_xpath: str, option: int) -> tuple[list, list, list, list, list, list, list]:
     """
     Scrapes all names, brands, prices, EAN's and links of products listed in a single page\n
     :param link_xpath: xpath to all urls of product pages
@@ -161,10 +196,8 @@ def get_page(driver, title_xpath: str, link_xpath: str, brand_xpath: str, old_pr
     try:
         title_html = WebDriverWait(driver, 10).until(
             EC.presence_of_all_elements_located((By.XPATH, title_xpath)))
-        # title_html = driver.find_elements(by=By.XPATH, value=title_xpath)
         urls_html = WebDriverWait(driver, 10).until(
             EC.presence_of_all_elements_located((By.XPATH, link_xpath)))
-    # urls_html = driver.find_elements(by=By.XPATH, value=link_xpath)
     except TimeoutError:
         print("Elementos não localizados")
 
@@ -174,13 +207,13 @@ def get_page(driver, title_xpath: str, link_xpath: str, brand_xpath: str, old_pr
                                                                        wholesale_price_xpath=wholesale_price_xpath,
                                                                        price_xpath=price_xpath,
                                                                        price_xpath2=price_xpath2,
-                                                                       ean_xpath=ean_xpath)
+                                                                       ean_xpath=ean_xpath, option=option)
 
     return names, links, brands, old_prices, wholesale_prices, prices, ean
 
 
 def get_attributes(links: list, brand_xpath: str, old_price_xpath: str, wholesale_price_xpath: str, price_xpath: str,
-                   price_xpath2: str, ean_xpath: str) -> tuple[list, list, list, list, list]:
+                   price_xpath2: str, ean_xpath: str, option: int) -> tuple[list, list, list, list, list]:
     """
     Função que busca as brands, preços e EAN's de todos os produtos listados em uma página\n
     :param links: list of links of the products listed in a single page
@@ -199,29 +232,24 @@ def get_attributes(links: list, brand_xpath: str, old_price_xpath: str, wholesal
     brands = []
     i = 1
 
-    headers = {
-        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36"}
-
     for link in links:
-        req = requests.Session()
-        html = req.get(url=link, headers=headers).content
+
+        if i % 10 == 0:
+            time.sleep(2)
+
+        html = get_html(link, option)
         sel = Selector(text=html)
 
-        with open('xpath{}.txt'.format(i), 'w') as file:
-            file.write(str(html))
+        print('Produto ' + str(i))
         i += 1
 
         brand = str(sel.xpath(brand_xpath).extract_first()).strip()
-
         old_price = str(sel.xpath(old_price_xpath).extract_first()).strip()
-
         wholesale_price = str(sel.xpath(wholesale_price_xpath).extract_first()).strip()
-
         if sel.xpath(price_xpath).extract_first() is None:
             price = str(sel.xpath(price_xpath2).extract_first()).strip()
         else:
             price = str(sel.xpath(price_xpath).extract_first()).strip()
-
         n_ean = str(sel.xpath(ean_xpath).extract_first()).strip()
 
         brands.append(brand)
