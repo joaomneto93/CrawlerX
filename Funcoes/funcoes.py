@@ -38,7 +38,7 @@ def get_driver_page(url: str):
     :return: driver
     """
     options = webdriver.ChromeOptions()
-    options.add_argument("--headless")
+    # options.add_argument("--headless")
     options.add_argument("--disable-infobars")
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--no-sandbox")
@@ -55,8 +55,8 @@ def get_html(url, option):
     #     "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
     #                   "(KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36"}
 
-    html = requests.get(url=url).content
     if option in [0, 3]:
+        html = requests.get(url=url).content
         return html
     elif option in [1, 2]:
         driver = get_driver_page(url)
