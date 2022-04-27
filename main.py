@@ -32,13 +32,12 @@ qualidoc = {'tabs': ["https://www.qualidoc.com.br/compare-e-comprove-a-z",
                      "https://www.qualidoc.com.br/higiene-e-cuidado-pessoal"],
             'titles': "//div[@class='productsContainer']//div[@class='mainContainer']//div[@class='title']/span",
             'urls': "//div[@class='productsContainer']//div[@class='mainContainer']/div[@class='infoContainer']/a[1]",
-            'brand': "//div[@id='content']",
-            'old': "//div[@class='price-info']//div[@class='price-box']/span//p[@class='old-price']/span["
-                   "2]/text()[2]",
+            'brand': "//div[@id='tab2']/div/div[1]/div[3]/div[2]/text()",
+            'old': "//div[@class='product_label raia-arrasa']//span[@class='price']/text()",
             'wholesale': "//div[@class='product_label raia-arrasa']//span[@class='price']/text()",
-            'price': '//script[@id="CC-schema-org-server"]',
-            'price2': "//*[@id='CC-ProdutoDetalhes']/div/div[2]/div/div[6]/div[2]/div/div/div[2]/div/div[1]/div/div/strong/text()",
-            'ean': "//*[@id='tab2']/div/div[1]/div[2]/div[2]/text()",
+            'price2': "//div[@class='produto__infos']",
+            'price': "//div[@class='produto__infos']//div[@class='salePrice']/strong/text()",
+            'ean': "//div[@id='tab2']/div/div[1]/div[2]/div[2]/text()",
             'next': '//*[@id="cc-paginated-controls"]/div/a[@page="{}"]',
             'filename': 'Arquivos/qualidoc {}.csv'}
 
@@ -51,15 +50,12 @@ farma_delivery = {'tabs': ["https://www.farmadelivery.com.br/remedios-e-medicame
                            "https://www.farmadelivery.com.br/perfumaria"],
                   'titles': "//h2[@class='product-name']/a",
                   'urls': "//h2[@class='product-name']/a",
-                  'brand': "//div[@class='title-new']",
-                  'old': "//div[@class='price-info']//div[@class='price-box']/span//p[@class='old-price']/span["
-                         "2]/text()[2]",
+                  'brand': "//div[@class='title-new']//span[@class='marca']/text()",
+                  'old': "//p[@class='old-price']//span[@class='price']/text()",
                   'wholesale': "//div[@class='product_label raia-arrasa']//span[@class='price']/text()",
-                  'price': "//div[@class='price-info']//div[@class='price-box']//p[@class='special-price']/"
-                           "span/span[2]/text()",
-                  'price2': "//div[@class='price-info']//div[@class='price-box']//span[@class='regular-price ']/"
-                            "span[2]/text()",
-                  'ean': "//*[@id='product-attribute-specs-table']/tbody/tr[2]/td/text()",
+                  'price': "//p[@class='special-price']//span[@class='price']/text()",
+                  'price2': "//div[@class='box-comprar']/div//span[@class='price']/text()",
+                  'ean': "//table[@id='product-attribute-specs-table']/tbody/tr[3]/td/text()",
                   'next': '//a[@title="Próximo"]',
                   'filename': 'Arquivos/farma_delivery {}.csv'}
 

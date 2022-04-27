@@ -207,9 +207,9 @@ def get_attributes(links: list, brand_xpath: str, old_price_xpath: str, wholesal
         html = req.get(url=link, headers=headers).content
         sel = Selector(text=html)
 
-        with open('xpath{}.txt'.format(i), 'w') as file:
-            file.write(str(html))
-        i += 1
+        # with open('xpath{}.txt'.format(i), 'w') as file:
+        #     file.write(str(html))
+        # i += 1
 
         brand = str(sel.xpath(brand_xpath).extract_first()).strip()
 
