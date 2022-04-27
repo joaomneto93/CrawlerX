@@ -4,3 +4,6 @@ bs4
 scrapy
 numpy
 pandas
+
+
+#version 1.1.2
